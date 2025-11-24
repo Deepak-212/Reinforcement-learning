@@ -37,14 +37,15 @@ qmatrix_file = "trained_Qmatrix.npy"
 # Train if no saved Q-matrix exists, otherwise load
 # -----------------------------
 if not os.path.exists(qmatrix_file):
-    print("🚀 No saved Q-matrix found. Training now...")
+    print("No saved Q-matrix found. Training now...")
     Q1 = Q_learning(env, alpha, gamma, epsilon, numberEpisodes, numberOfBins, lowerBounds, upperBounds)
     Q1.simulateEpisodes()
     np.save(qmatrix_file, Q1.Qmatrix)
-    print("✅ Training complete. Q-matrix saved.")
+    print("Training complete. Q-matrix saved.")
 else:
-    print("📂 Found saved Q-matrix. Loading...")
+    print("Found saved Q-matrix. Loading...")
     Q1 = Q_learning(env, alpha, gamma, epsilon, numberEpisodes, numberOfBins, lowerBounds, upperBounds)
     Q1.Qmatrix = np.load(qmatrix_file)
     obtainedRewardsOptimal, env1 = Q1.simulateLearnedStrategy()
-    print("🎯 Rewards from learned strategy:", obtainedRewardsOptimal)
+
+    print("Rewards from learned strategy:", obtainedRewardsOptimal)
